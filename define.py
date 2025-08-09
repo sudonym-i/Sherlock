@@ -8,7 +8,7 @@ import torch.nn.functional as func
 from torch.utils.data import DataLoader
 
 from torch.utils.tensorboard import SummaryWriter
-from tokenizer import tokenize_c
+from token import tokenize_c
 
 #for logging data to tensorboard
 writer = SummaryWriter("training_runs/mnist_digit_recog")
