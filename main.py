@@ -5,11 +5,6 @@ from define import NueralNet
 
 def main():
 
-    tokens = tokenize_c(code)
-    vectors = tokens_to_vectors(tokens)
-    tensor = torch.tensor(vectors)
-    print(np.array(tensor))
-
-    model = NueralNet(10)  
+    model = NueralNet(dimensionality=10)  
 
 main()

@@ -9,9 +9,9 @@ class NueralNet(nn.Module):
     def __init__(self, dimensionality):
         super().__init__()
         # layer one
-        self.layer_1 = nn.Linear(, 128)
+        self.layer_1 = nn.Linear(dimensionality, dimensionality/2)
         #output layer
-        self.layer_2 = nn.Linear(128, 10)
+        self.layer_2 = nn.Linear(dimensionality/2, 10)
 
 
     # make prediciton!

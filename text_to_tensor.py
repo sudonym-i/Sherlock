@@ -1,9 +1,23 @@
 from pygments.lexers import CLexer
 from pygments.token import Token
-from pygments import highlight
-from pygments.formatters import get_formatter_by_name
-import torch
-from typing import List, Tuple, Dict
+from typing import List
+
+
+def tokenize_c(c_code):
+
+    lexer = CLexer()
+    tokens = []
+    token_types = []
+    
+    for token_type, value in lexer.get_tokens(c_code):
+        # Filter out whitespace and newlines
+        if token_type not in (Token.Text, Token.Text.Whitespace):
+            if value.strip():  # Skip empty tokens
+                tokens.append(value.strip())
+                token_types.append(str(token_type))
+    # Return tokens and their types
+    return tokens
+
 
 def tokens_to_vectors(tokens_obj: List[str]):
     # right now there is no information inherent in teh vector space,
@@ -24,19 +38,3 @@ def tokens_to_vectors(tokens_obj: List[str]):
 
         # outputs a list of 10 dimensional vectors = one vector per token
     return vectors
-
-
-def tokenize_c(c_code):
-    
-    lexer = CLexer()
-    tokens = []
-    token_types = []
-    
-    for token_type, value in lexer.get_tokens(c_code):
-        # Filter out whitespace and newlines
-        if token_type not in (Token.Text, Token.Text.Whitespace):
-            if value.strip():  # Skip empty tokens
-                tokens.append(value.strip())
-                token_types.append(str(token_type))
-    # Return tokens and their types
-    return tokens
